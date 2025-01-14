@@ -14,6 +14,6 @@ let isActive = true;
 let toggled;
 
 // TODO: 논리 NOT 연산자를 사용해 isActive 값을 반전하고 toggled에 할당하세요.
-
+toggled = !isActive;
 // export 를 수정하지 마세요.
 export { toggled };

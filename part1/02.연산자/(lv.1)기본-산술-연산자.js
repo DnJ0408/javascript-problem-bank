@@ -24,6 +24,9 @@ let divide = 100;
 
 // TODO: add, subtract, multiply, divide 변수에 num1 을 이용해서 각각 더하기, 빼기, 곱하기, 나누기 연산을 수행하세요.
 // ex) add = add + num1;
-
+add = add + num1;
+subtract = subtract - num1;
+multiply = multiply * num1;
+divide = divide / num1; 
 // export 를 수정하지 마세요.
 export { add, subtract, multiply, divide };
