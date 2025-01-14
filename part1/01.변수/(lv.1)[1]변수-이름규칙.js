@@ -10,10 +10,10 @@
  */
 
 // 잘못된 변수 이름들을 주석 처리하고, 올바른 변수 이름만 export 에 추가하세요.
-let 1stVariable;  
+// let 1stVariable;  
 let _underscore;  
 let $dollarSign;  
-let var;          
+// let var;          
 let camelCase;    
 
 // TODO: **올바른** 변수 이름만 export 에 추가하세요.

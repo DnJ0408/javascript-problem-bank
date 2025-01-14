@@ -11,6 +11,9 @@ function hoistingTest() {
   //      console.log(d);
   //       var d = 5;
   //      console.log(d);
+  console.log(d);
+  var d = 5;
+  console.log(d);
 }
 
 // export 를 수정하지 마세요.
