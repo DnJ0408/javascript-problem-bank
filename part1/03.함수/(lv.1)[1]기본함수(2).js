@@ -12,6 +12,7 @@
 
 function greet(name) {
   // TODO: "Hello, {name}"을 반환
+  return `Hello, ${name}`;
 }
 
 // export 를 수정하지 마세요.

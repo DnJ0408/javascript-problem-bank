@@ -10,6 +10,13 @@
  */
 function countProperties(obj) {
   // TODO
+  let count = 0;
+  for (let key in obj) {
+    if (key !== undefined) {
+      count++;
+    }
+  }
+  return count;
 }
 
 export { countProperties };
