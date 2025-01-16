@@ -11,6 +11,14 @@
  */
 function sumArray(arr) {
   // TODO
+  if (arr.length == 0) {
+    return 0;
+  }
+  let sum = 0;
+  arr.forEach(function (item) {
+    sum += item;
+  })
+  return sum;
 }
 
 // export를 수정하지 마세요.
