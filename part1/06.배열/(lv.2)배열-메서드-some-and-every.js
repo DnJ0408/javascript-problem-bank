@@ -10,10 +10,18 @@
  */
 
 // TODO: hasNegative 함수를 작성하세요.
-function hasNegative() {}
+function hasNegative(arr) {
+    return arr.some(function (num) {
+        return num < 0;
+    })
+}
 
 // TODO: allPositive 함수를 작성하세요.
-function allPositive() {}
+function allPositive(arr) {
+    return arr.every(function (num) {
+        return num > 0;
+    })
+}
 
 // export를 수정하지 마세요.
 export { hasNegative, allPositive };
