@@ -19,13 +19,16 @@ function fixCartReferenceIssue() {
   };
 
   // TODO: userBCart가 userACart와 독립된 복사본을 가지도록 해야 함
-  let userBCart;
+  let userBCart = JSON.parse(JSON.stringify(userACart));
 
   const coupon = 5000;
 
   applyCoupon(userBCart, coupon);
   function applyCoupon(cart, discount) {
     // TODO
+    cart.items.forEach(function(item) {
+      return item.price = Math.max(item.price - discount, 0);
+    });
   }
 
   return { userACart, userBCart };
