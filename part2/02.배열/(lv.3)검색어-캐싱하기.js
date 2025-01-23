@@ -17,11 +17,23 @@ let topKeywordsCache = [];
 
 function updateTopKeywords(keywords) {
   // TODO
+  const keywordFrequency = {};
+
+  keywords.forEach(function (keyword) {
+    return keywordFrequency[keyword] = (keywordFrequency[keyword] || 0) + 1;
+  });
+
+  const sortedKeywords =
+  Object.entries(keywordFrequency)
+  .sort(function (a, b) { return b[1] - a[1]; })
+  .map(function ([keyword]) { return keyword;  })
+
+  topKeywordsCache = sortedKeywords.slice(0,10);
 }
 
 function getTopKeywords() {
   // TODO
-  return [];
+  return topKeywordsCache;
 }
 
 // export를 수정하지 마세요.
