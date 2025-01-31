@@ -28,7 +28,19 @@
  */
 
 // TODO: groupBy 함수를 작성하세요.
-function groupBy(arr, key) {}
+function groupBy(arr, key) {
+    return arr.reduce((acc, current) => {
+        const groupKey = current.hasOwnProperty(key) ? current[key] : undefined;
+
+        if (!acc[groupKey]) {
+            acc[groupKey] = [];
+        }
+
+        acc[groupKey].push(current);
+
+        return acc;
+    }, {})
+}
 
 // export를 수정하지 마세요.
 export { groupBy };
