@@ -27,7 +27,42 @@
  * @returns {(fn: () => Promise<any>) => Promise<any>}
  */
 
-function createRateLimiter(maxRequests, timeWindow) {}
+function createRateLimiter(maxRequests, timeWindow) {
+  let requestTimestamps = []; // 요청 타임스탬프 저장 배열
+  let queue = []; // 대기 중인 요청을 저장하는 큐
+
+  function processQueue() {
+    if (queue.length === 0) return; // 큐가 비어 있으면 처리할 필요 없음
+
+    const now = Date.now();
+    // timeWindow를 벗어난 오래된 요청 삭제
+    requestTimestamps = requestTimestamps.filter(ts => now - ts < timeWindow);
+
+    if (requestTimestamps.length < maxRequests) {
+      // 요청 실행 가능하면 큐에서 하나 빼서 실행
+      const { fn, resolve, reject } = queue.shift();
+      requestTimestamps.push(Date.now()); // 실행된 요청의 타임스탬프 추가
+
+      fn()
+        .then(resolve) // 성공하면 resolve 호출
+        .catch(reject) // 실패하면 reject 호출
+        .finally(() => {
+          // 요청이 끝난 후 다음 요청을 처리
+          setTimeout(processQueue, timeWindow / maxRequests);
+        });
+    } else {
+      // 제한 초과 시, 일정 시간 후 다시 확인
+      setTimeout(processQueue, timeWindow / maxRequests);
+    }
+  }
+
+  return function rateLimitedRequest(fn) {
+    return new Promise((resolve, reject) => {
+      queue.push({ fn, resolve, reject }); // 요청을 큐에 추가
+      processQueue(); // 요청 처리 시도
+    });
+  };
+}
 
 // export 를 수정하지 마세요.
 export { createRateLimiter };
